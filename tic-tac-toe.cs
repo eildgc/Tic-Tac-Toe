@@ -47,7 +47,6 @@ namespace tic_tac_toe
         {
             //Necesitamos y, x
             //Necesitamos el valor agregar ("X", "O")
-
             matrix[y, x] = value;
         }
         static void Main(string[] args)
