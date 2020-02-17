@@ -2,4 +2,4 @@
 
 Objetivo: Crear un TicTacToe de .Net
 
-Cada turno, el usuario elige una casilla para colocar su simbolo ("X")
+Cada turno, el usuario elige una casilla para colocar su simbolo ("X")0t

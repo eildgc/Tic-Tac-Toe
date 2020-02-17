@@ -49,12 +49,54 @@ namespace tic_tac_toe
             //Necesitamos el valor agregar ("X", "O")
             matrix[y, x] = value;
         }
+
+        static void InputRequest()
+        {
+            Console.WriteLine("Escribe las coordenadas de la forma [y, x] donde quieres hacer tu movimiento");
+            Console.WriteLine("Y presiona Enter");
+            string userInputCoordinates = Console.ReadLine();
+
+            //Quitar espacios
+            userInputCoordinates = userInputCoordinates.Replace(" ", "");
+
+            //Separar en un arreglo de valores con ","
+            string[] coordinates = userInputCoordinates.Split(",");
+
+            //Convertir en coordenadas tipo entero
+            int y = Convert.ToInt32(coordinates[0]);
+            int x = Convert.ToInt32(coordinates[1]);
+
+            AddValue('X', y, x);
+        }
         static void Main(string[] args)
         {
             PrintMatrix();
-            AddValue('X', 0, 0);
+            InputRequest();
             PrintMatrix();
-            
+
+            // bool gameEnded = false;
+            // int turns = 0;
+
+            // while(!gameEnded)
+            // {
+            //     InputRequest();
+            //     turns++;
+            //     //Check if user won
+            //     gameEnded = CheckThreeLines();    
+
+            //     //End after 9 turns
+            //     if (turns >= 9)
+            //     {
+            //         gameEnded = true;    
+            //     }
+
+            //     if (!gameEnded) {
+            //         //AIRequest();
+            //         turns++;
+            //         //Check if AI won
+            //         gameEnded = CheckThreeLines();    
+            //     }                 
+            }
         }
     }
 }
