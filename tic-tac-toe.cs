@@ -50,6 +50,7 @@ namespace tic_tac_toe
             matrix[y, x] = value;
         }
 
+        
         static void InputRequest()
         {
             Console.WriteLine("Escribe las coordenadas de la forma [y, x] donde quieres hacer tu movimiento");
@@ -68,10 +69,42 @@ namespace tic_tac_toe
 
             AddValue('X', y, x);
         }
+        static bool IsValueInMatrix(int y, int x)
+        {
+            bool isEmpty = matrix[y,x] == ' ';
+            return !isEmpty;
+        }
+        static void AIRequest()
+        {
+            Random r = new Random();
+            //Numero entre 0 y 2, va a ser un entero
+            //El int entre parentesis transforma un coso a otro
+            
+            bool validPositionSelected = false;
+
+            int y = 0;
+            int x = 0;
+
+            while(!validPositionSelected)
+            {
+                y = (int)Math.Floor(r.NextDouble() * 3);
+                x = Convert.ToInt32(Math.Floor(r.NextDouble() * 3));
+                bool isValueDefined = IsValueInMatrix(y,x);
+
+                validPositionSelected = !isValueDefined;    
+            }
+            
+            AddValue ('O', y, x);
+
+
+            // 0 inclusivo, 1 exclusivo (casi el 1, pero nu)
+
+        }
         static void Main(string[] args)
         {
             PrintMatrix();
             InputRequest();
+            AIRequest();
             PrintMatrix();
 
             // bool gameEnded = false;
@@ -99,4 +132,4 @@ namespace tic_tac_toe
             }
         }
     }
-}
+
