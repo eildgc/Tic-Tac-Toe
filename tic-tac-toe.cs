@@ -69,6 +69,90 @@ namespace tic_tac_toe
 
             AddValue('X', y, x);
         }
+        static bool CheckThreeLines()
+        {
+            //Rows
+            //matrix [0, 0]
+            //matrix [0, 1]
+            //matrix [0, 2]
+            char value = ' ';
+            bool sameValue = true;
+            for (int y = 0; y < 3; y++) {    
+                value = ' ';
+                sameValue = true;
+                for (int x = 0; x < 3; x++){
+                    if (x == 0)
+                    {
+                    value = matrix[y,x];
+                    }
+                    else {
+                        sameValue = sameValue && (value == matrix[y,x]);
+                   }
+                }
+                //sameVale determina si son iguales o no
+                if (sameValue && value != ' ')
+                {
+                    return true;
+                }
+            }
+
+            //Columns
+            for (int x = 0; x < 3; x++) {
+                value = ' ';
+                sameValue = true;
+                for (int y = 0; y < 3; y++){
+                    if (y == 0)
+                    {
+                    value = matrix[y,x];
+                    }
+                    else {
+                        sameValue = sameValue && (value == matrix[y,x]);
+                   }
+                }
+                //sameVale determina si son iguales o no
+                if (sameValue && value != ' ')
+                {
+                    return true;
+                }
+            }
+
+            //Diagoals
+            // [0,0] [1,1] [2,2]
+            value = ' ';
+            sameValue = true;
+            for (int i = 0; i < 3; i++){
+
+                if (i == 0){
+                    value = matrix[i,i];
+
+                }else {
+                    sameValue = sameValue && (value == matrix[i,i]);
+                }
+
+                if(i == 2 && sameValue && value !=' '){
+                    return true;
+                }
+             }
+            
+            // [0,2] [1,1] [2,0]
+            value = ' ';
+            sameValue = true;
+            for (int y = 0; y < 3; y++){
+                int x = 2 - y;
+                if (y == 0){ //primer iteracion, manejo especial
+                    value = matrix[y,x];
+
+                }else {
+                    sameValue = sameValue && (value == matrix[y, x]);
+                }
+
+                if(y == 2 && sameValue && value !=' '){
+                    return true;
+                }
+             }
+
+            return false;
+        }
         static bool IsValueInMatrix(int y, int x)
         {
             bool isEmpty = matrix[y,x] == ' ';
@@ -95,41 +179,38 @@ namespace tic_tac_toe
             }
             
             AddValue ('O', y, x);
-
-
-            // 0 inclusivo, 1 exclusivo (casi el 1, pero nu)
-
         }
         static void Main(string[] args)
         {
-            PrintMatrix();
-            InputRequest();
-            AIRequest();
-            PrintMatrix();
+            bool gameEnded = false;
+            int turns = 0;
 
-            // bool gameEnded = false;
-            // int turns = 0;
+            while(!gameEnded)
+            {
+                InputRequest();
+                turns++;
+                //Check if user won
+                gameEnded = CheckThreeLines();    
 
-            // while(!gameEnded)
-            // {
-            //     InputRequest();
-            //     turns++;
-            //     //Check if user won
-            //     gameEnded = CheckThreeLines();    
+                //End after 9 turns
+                if (turns >= 9)
+                {
+                    gameEnded = true;    
+                }
 
-            //     //End after 9 turns
-            //     if (turns >= 9)
-            //     {
-            //         gameEnded = true;    
-            //     }
-
-            //     if (!gameEnded) {
-            //         //AIRequest();
-            //         turns++;
-            //         //Check if AI won
-            //         gameEnded = CheckThreeLines();    
-            //     }                 
+                if (!gameEnded) {
+                    AIRequest();
+                    turns++;
+                    
+                    //Check if AI won
+                    gameEnded = CheckThreeLines();    
+                }
+                PrintMatrix();                 
             }
+            Console.WriteLine("Game over");
+            PrintMatrix();
         }
     }
+}
+
 
