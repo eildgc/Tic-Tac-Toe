@@ -33,6 +33,7 @@ namespace tic_tac_toe
                 }
                 line = line.Substring(0, line.Length - 1);
                 Console.WriteLine(line);
+                
                 Console.WriteLine("------");
             }
         }
@@ -69,6 +70,11 @@ namespace tic_tac_toe
 
             AddValue('X', y, x);
         }
+        /// <summary>
+        /// Este método revisa si los valores X o '0' son 3 en las filas, columnas o diagonales
+        /// </summary>
+        /// <returns>Regresa un bool que indica si se ha completado una fila, columna o diagonal
+        /// con el valor X o '0'</returns>
         static bool CheckThreeLines()
         {
             //Rows
