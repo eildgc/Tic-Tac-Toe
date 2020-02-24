@@ -51,7 +51,9 @@ namespace tic_tac_toe
             matrix[y, x] = value;
         }
 
-        
+        /// <summary>
+        /// Se pide input al usuario para comenzar el juego
+        /// </summary>
         static void InputRequest()
         {
             Console.WriteLine("Escribe las coordenadas de la forma [y, x] donde quieres hacer tu movimiento");
