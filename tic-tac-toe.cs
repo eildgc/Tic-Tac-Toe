@@ -86,6 +86,7 @@ namespace tic_tac_toe
                     Console.WriteLine();
                     Console.WriteLine("Las coordenadas que ingresaste no están disponibles");
                     Console.WriteLine("Intenta nuevamente");
+                    PrintMatrix();
 
                 }   
             }
