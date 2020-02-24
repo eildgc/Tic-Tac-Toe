@@ -37,7 +37,6 @@ namespace tic_tac_toe
                     Console.WriteLine("-----");
                 } else if(y == 1) {
                     Console.WriteLine("-----");
-
                 }
             }
         }
