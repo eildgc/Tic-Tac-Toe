@@ -59,21 +59,40 @@ namespace tic_tac_toe
         /// </summary>
         static void InputRequest()
         {
-            Console.WriteLine("Escribe las coordenadas de la forma [y, x] donde quieres hacer tu movimiento");
-            Console.WriteLine("Y presiona Enter");
-            string userInputCoordinates = Console.ReadLine();
+            bool validPositionSelected = false;
+            int y = 0;
+            int x = 0;
+           while(!validPositionSelected)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Escribe las coordenadas de la forma [y, x] donde quieres hacer tu movimiento");
+                Console.WriteLine("Y presiona Enter");
+                string userInputCoordinates = Console.ReadLine();
 
-            //Quitar espacios
-            userInputCoordinates = userInputCoordinates.Replace(" ", "");
+                //Quitar espacios
+                userInputCoordinates = userInputCoordinates.Replace(" ", "");
 
-            //Separar en un arreglo de valores con ","
-            string[] coordinates = userInputCoordinates.Split(",");
+                //Separar en un arreglo de valores con ","
+                string[] coordinates = userInputCoordinates.Split(",");
+                
+                //Convertir en coordenadas tipo entero
+                y = Convert.ToInt32(coordinates[0]);
+                x = Convert.ToInt32(coordinates[1]);
+                     
+                bool isValueDefined = IsValueInMatrix(y,x);
+                validPositionSelected = !isValueDefined;
+                if (validPositionSelected == false)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Las coordenadas que ingresaste no están disponibles");
+                    Console.WriteLine("Intenta nuevamente");
 
-            //Convertir en coordenadas tipo entero
-            int y = Convert.ToInt32(coordinates[0]);
-            int x = Convert.ToInt32(coordinates[1]);
-
+                }   
+            }
             AddValue('X', y, x);
+
+                
+
         }
         /// <summary>
         /// Este método revisa si los valores X o '0' son 3 en las filas, columnas o diagonales
@@ -199,6 +218,7 @@ namespace tic_tac_toe
             while(!gameEnded)
             {
                 InputRequest();
+                Console.WriteLine();
                 turns++;
                 //Check if user won
                 gameEnded = CheckThreeLines();    
@@ -212,12 +232,12 @@ namespace tic_tac_toe
                 if (!gameEnded) {
                     AIRequest();
                     turns++;
-                    
                     //Check if AI won
                     gameEnded = CheckThreeLines();    
                 }
                 PrintMatrix();                 
             }
+            Console.WriteLine();
             Console.WriteLine("Game over");
             PrintMatrix();
         }
