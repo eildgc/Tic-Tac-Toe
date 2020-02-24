@@ -99,7 +99,7 @@ namespace tic_tac_toe
         /// </summary>
         /// <returns>Regresa un bool que indica si se ha completado una fila, columna o diagonal
         /// con el valor X o '0'</returns>
-        static bool CheckThreeLines()
+        static bool CheckAllLinesAndIfGameEnded()
         {
             //Rows
             //matrix [0, 0]
@@ -221,7 +221,7 @@ namespace tic_tac_toe
                 Console.WriteLine();
                 turns++;
                 //Check if user won
-                gameEnded = CheckThreeLines();    
+                gameEnded = CheckAllLinesAndIfGameEnded();    
 
                 //End after 9 turns
                 if (turns >= 9)
@@ -233,7 +233,7 @@ namespace tic_tac_toe
                     AIRequest();
                     turns++;
                     //Check if AI won
-                    gameEnded = CheckThreeLines();    
+                    gameEnded = CheckAllLinesAndIfGameEnded();    
                 }
                 PrintMatrix();                 
             }
