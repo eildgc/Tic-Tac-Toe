@@ -52,7 +52,7 @@ namespace tic_tac_toe
         }
 
         /// <summary>
-        /// Se pide input al usuario para comenzar el juego
+        /// In this method we ask to the user to write the coordinates they would like to use to play.
         /// </summary>
         static void InputRequest()
         {
@@ -73,7 +73,7 @@ namespace tic_tac_toe
             AddValue('X', y, x);
         }
         /// <summary>
-        /// Este método revisa si los valores X o '0' son 3 en las filas, columnas o diagonales
+        /// This method check if there are three of the same values in rows, columns and diagonals to end the game. 
         /// </summary>
         /// <returns>Regresa un bool que indica si se ha completado una fila, columna o diagonal
         /// con el valor X o '0'</returns>
@@ -161,11 +161,21 @@ namespace tic_tac_toe
 
             return false;
         }
+        /// <summary>
+        /// In this method we check if the values in the Matrix are empty or not and saved the result in a bool.
+        /// </summary>
+        /// <param name="y">Position in y</param>
+        /// <param name="x">Position in x</param>
+        /// <returns>a bool value</returns>
         static bool IsValueInMatrix(int y, int x)
         {
             bool isEmpty = matrix[y,x] == ' ';
             return !isEmpty;
         }
+        /// <summary>
+        /// Here we generated a random numbers and add them to the Matrix marking it with the letter O,
+        /// but checking if the coordinates that we are going to use are not occupied by another value.
+        /// </summary>
         static void AIRequest()
         {
             Random r = new Random();
@@ -188,6 +198,10 @@ namespace tic_tac_toe
             
             AddValue ('O', y, x);
         }
+        /// <summary>
+        /// Principal method where we used all other methods to play TicTacToe
+        /// </summary>
+        /// <param name="args"></param>
         static void Main(string[] args)
         {
             bool gameEnded = false;
