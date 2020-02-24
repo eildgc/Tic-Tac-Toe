@@ -30,11 +30,10 @@ namespace tic_tac_toe
                     //Console.WriteLine($"[y, x] = {y}, {x}");
                     //Console.Write(matrix[y,x]);
                     line += matrix [y,x] + "|";
+                    
                 }
                 line = line.Substring(0, line.Length - 1);
                 Console.WriteLine(line);
-                
-                Console.WriteLine("------");
             }
         }
         //Documentacion de un metodo
